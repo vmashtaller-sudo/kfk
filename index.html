@@ -32,7 +32,8 @@
             position: absolute;
             width: 100%;
             height: 100%;
-            padding: 40px 80px;
+            /* Отступы: сверху 30px, снизу 100px (чтобы кнопки не перекрывали текст), по бокам 80px */
+            padding: 30px 80px 100px 80px; 
             display: none;
             opacity: 0;
             transition: opacity 0.4s ease-in-out;
@@ -42,7 +43,7 @@
         .slide.active {
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            /* Убрали justify-content: center, чтобы контент всегда шел сверху вниз */
             opacity: 1;
         }
 
@@ -186,6 +187,11 @@
             padding: 12px 30px;
             margin-top: 10px;
             width: 100%;
+            border: none;
+            color: white;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background 0.3s;
         }
 
         .quiz-btn:hover:not(:disabled) {
@@ -203,14 +209,14 @@
         /* Кнопки управления */
         .controls {
             position: absolute;
-            bottom: 20px;
+            bottom: 15px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
             align-items: center;
-            gap: 20px;
-            background: rgba(0, 0, 0, 0.8);
-            padding: 10px 20px;
+            gap: 15px;
+            background: rgba(0, 0, 0, 0.85);
+            padding: 8px 20px;
             border-radius: 30px;
             z-index: 10;
         }
@@ -242,6 +248,7 @@
             text-align: center;
         }
 
+        /* Кастомизация полосы прокрутки */
         .slide::-webkit-scrollbar {
             width: 10px;
         }
