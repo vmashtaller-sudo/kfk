@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Классификация и устройство БПЛА</title>
+    <style>
+        /* --- ВСТРОЕННЫЙ CSS --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #1a1a2e;
+            color: #ffffff;
+            overflow: hidden; /* Скрываем прокрутку страницы */
+        }
+
+        .presentation-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            padding: 40px 80px;
+            display: none; /* Скрываем все слайды по умолчанию */
+            opacity: 0;
+            transition: opacity 0.4s ease-in-out;
+            overflow-y: auto; /* Добавляем скролл, если текст не помещается */
+        }
+
+        .slide.active {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            opacity: 1;
+        }
+
+        .content {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        h1 {
+            color: #ff7b00;
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+        }
+
+        h2 {
+            color: #e0e0e0;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 1.8rem;
+        }
+
+        p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        ul {
+            margin-left: 20px;
+            font-size: 1.3rem;
+            line-height: 2;
+        }
+
+        /* Стили для таблицы */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: rgba(255, 255, 255, 0.05);
+            font-size: 1rem;
+        }
+
+        th, td {
+            border: 1px solid #ff7b00;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #ff7b00;
+            color: #1a1a2e;
+            font-weight: bold;
+        }
+
+        /* Галерея картинок */
+        .image-gallery {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .image-gallery.single {
+            justify-content: center;
+        }
+
+        .image-gallery img {
+            max-height: 250px;
+            max-width: 100%;
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+            background-color: #fff;
+            padding: 5px;
+        }
+
+        /* Кнопки управления */
+        .controls {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px 20px;
+            border-radius: 30px;
+            z-index: 10;
+        }
+
+        button {
+            background-color: #ff7b00;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background 0.3s, opacity 0.3s;
+        }
+
+        button:hover:not(:disabled) {
+            background-color: #e66a00;
+        }
+
+        button:disabled {
+            cursor: not-allowed;
+        }
+
+        #slideCounter {
+            font-size: 1.2rem;
+            font-weight: bold;
+            min-width: 50px;
+            text-align: center;
+        }
+
+        /* Кастомизация полосы прокрутки для слайдов */
+        .slide::-webkit-scrollbar {
+            width: 10px;
+        }
+        .slide::-webkit-scrollbar-track {
+            background: #1a1a2e;
+        }
+        .slide::-webkit-scrollbar-thumb {
+            background: #ff7b00;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="presentation-container">
+
+        <!-- Слайд 1 -->
+        <div class="slide active">
+            <div class="content">
+                <h1>Классификация и устройство БПЛА</h1>
+                <p>Существует несколько принятых классификаций БПЛА в зависимости от характеристик, которые при этой классификации оцениваются. В данном разделе рассматриваются две из них: классификация по летным характеристикам и классификация по конструкции.</p>
+                
+                <h2>Классификация БПЛА по летным характеристикам</h2>
+                <p>Для оценки летных характеристик БПЛА применяют такие параметры, как взлетная масса, дальность, высота и продолжительность полета, размеры самих аппаратов и др.</p>
+            </div>
+        </div>
+
+        <!-- Слайд 2 -->
+        <div class="slide">
+            <div class="content">
+                <h1>Российская универсальная классификация</h1>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Категория</th>
+                            <th>Взлетная масса, кг</th>
+                            <th>Дальность действия, км</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Микро и мини БПЛА ближнего действия</td><td>0 - 5</td><td>25 - 40</td></tr>
+                        <tr><td>Легкие БПЛА малого радиуса действия</td><td>5 - 50</td><td>10 - 70</td></tr>
+                        <tr><td>Легкие БПЛА среднего действия</td><td>50 - 100</td><td>70 – 150 (250)</td></tr>
+                        <tr><td>Средние БПЛА</td><td>100 - 300</td><td>150 - 1000</td></tr>
+                        <tr><td>Средне – тяжелые БПЛА</td><td>300 – 500</td><td>70 – 300</td></tr>
+                        <tr><td>Тяжелые БПЛА среднего радиуса действия</td><td>&lt; 500</td><td>70 - 300</td></tr>
+                        <tr><td>Тяжелые БПЛА большой продолжительности полета</td><td>&lt; 1500</td><td>1500</td></tr>
+                        <tr><td>Беспилотные боевые самолеты</td><td>&lt; 500</td><td>1500</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Слайд 3 -->
+        <div class="slide">
+            <div class="content">
+                <h1>Классификация БПЛА по конструкции</h1>
+                <p>Различают следующие типы БПЛА, отличающихся конструкцией и принципом работы, технологиями взлета и посадки:</p>
+                <ul>
+                    <li>БПЛА самолетного типа;</li>
+                    <li>мультироторные БПЛА;</li>
+                    <li>БПЛА Аэростатического типа;</li>
+                    <li>конвертопланы и гибридные модели.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Слайд 4 -->
+        <div class="slide">
+            <div class="content">
+                <h1>БПЛА самолетного типа</h1>
+                <p>Такой тип аппаратов известен также как БПЛА с жестким крылом (fixed-wing UAV). Подъемная сила у них создается аэродинамическим способом за счет напора воздуха, набегающего на неподвижное крыло. Такие аппараты летают долго, высоко и быстро.</p>
+                <div class="image-gallery">
+                    <img src="img/1.jpg" alt="Proteus">
+                    <img src="img/2.jpg" alt="RQ-4 Global Hawk">
+                    <img src="img/3.jpg" alt="Геоскан 201">
+                </div>
+                <p>На рис. 1 — экспериментальный самолет Proteus (скорость 520 км/ч, полет до 18 ч). На рис. 2 — разведывательный БПЛА RQ-4 Global Hawk (нагрузка до 900 кг, до 30 часов на высоте 18 км). На рис. 3 — «Геоскан 201 Агрогеодезия» (скорость до 130 км/ч, полет до 3 часов).</p>
+            </div>
+        </div>
+
+        <!-- Слайд 5 -->
+        <div class="slide">
+            <div class="content">
+                <h1>БПЛА вертикального взлета и посадки</h1>
+                <p>Взлеты и посадки традиционных БПЛА самолетного типа – процесс трудоемкий и затратный, требующий больших площадей. Поэтому разработчики все чаще обращаются к самолетам вертикального взлета и посадки (СВВП). Многие из них являются гибридами самолетов и вертолетов (конвертопланы).</p>
+                <p>По положению фюзеляжа при взлете и посадке «на хвосте» эти аппараты назвали <strong>тэйлситтеры</strong> (tailsitter). Самое сложное для СВВП – это переход с вертикальной фазы полета на горизонтальную и обратно.</p>
+                <div class="image-gallery single">
+                    <img src="img/5.jpg" alt="СВВП">
+                </div>
+            </div>
+        </div>
+
+        <!-- Слайд 6 -->
+        <div class="slide">
+            <div class="content">
+                <h1>Мультикоптеры</h1>
+                <p>Одним из наиболее массово используемых гражданских БПЛА является мультикоптер. К этой группе относятся БПЛА, имеющие два и более несущих винта. Основное назначение — фото- и видеосъемка, мониторинг, обследование объектов, сельхозработы.</p>
+                <div class="image-gallery">
+                    <img src="img/6.jpg" alt="Схемы мультикоптеров">
+                    <img src="img/7.jpg" alt="Квадрокоптер">
+                    <img src="img/8.jpg" alt="Гексакоптер">
+                    <img src="img/9.jpg" alt="Октокоптер">
+                </div>
+                <p>Квадрокоптер — самая распространенная схема. Гексакоптеры (6 моторов) и октокоптеры (8 моторов) обладают большей грузоподъемностью и способны сохранять полет при выходе из строя одного двигателя.</p>
+            </div>
+        </div>
+
+        <!-- Слайд 7 -->
+        <div class="slide">
+            <div class="content">
+                <h1>Автожиры</h1>
+                <p>Автожир (гирокоптер, гироплан) – изобретение испанского инженера Хуана де ла Сиерва. Имеет схему, подобную самолету, у которого в качестве крыла (или в дополнение к нему) установлен свободно вращающийся винт.</p>
+                <p>Большинство автожиров не могут взлетать вертикально, зато им нужен меньший разбег (10-50 м). Почти все способны к посадке без пробега. Летают со скоростью до 180 км/ч, расход топлива — около 15 л на 100 км. Обладают меньшей вибрацией, чем вертолеты, и способны летать при сильном ветре (до 20 м/с).</p>
+                <div class="image-gallery single">
+                    <img src="img/10.jpg" alt="Автожир">
+                </div>
+            </div>
+        </div>
+
+        <!-- Навигация -->
+        <div class="controls">
+            <button id="prevBtn">&#8592; Назад</button>
+            <span id="slideCounter">1 / 7</span>
+            <button id="nextBtn">Вперед &#8594;</button>
+        </div>
+
+    </div>
+
+    <!-- --- ВСТРОЕННЫЙ JAVASCRIPT --- -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const slides = document.querySelectorAll('.slide');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const slideCounter = document.getElementById('slideCounter');
+            let currentSlide = 0;
+
+            // Функция обновления отображения слайдов
+            function showSlide(index) {
+                // Убираем активный класс у всех
+                slides.forEach(slide => slide.classList.remove('active'));
+                
+                // Добавляем активный класс нужному слайду
+                slides[index].classList.add('active');
+                
+                // Обновляем счетчик
+                slideCounter.textContent = `${index + 1} / ${slides.length}`;
+                
+                // Блокируем кнопки, если достигли края
+                prevBtn.disabled = index === 0;
+                nextBtn.disabled = index === slides.length - 1;
+                
+                // Делаем кнопки визуально неактивными
+                prevBtn.style.opacity = index === 0 ? '0.5' : '1';
+                nextBtn.style.opacity = index === slides.length - 1 ? '0.5' : '1';
+            }
+
+            // Обработчики для кнопок
+            nextBtn.addEventListener('click', () => {
+                if (currentSlide < slides.length - 1) {
+                    currentSlide++;
+                    showSlide(currentSlide);
+                }
+            });
+
+            prevBtn.addEventListener('click', () => {
+                if (currentSlide > 0) {
+                    currentSlide--;
+                    showSlide(currentSlide);
+                }
+            });
+
+            // Управление с клавиатуры (стрелки влево/вправо)
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowRight' && currentSlide < slides.length - 1) {
+                    currentSlide++;
+                    showSlide(currentSlide);
+                } else if (e.key === 'ArrowLeft' && currentSlide > 0) {
+                    currentSlide--;
+                    showSlide(currentSlide);
+                }
+            });
+
+            // Инициализация первого слайда
+            showSlide(currentSlide);
+        });
+    </script>
+</body>
+</html>
