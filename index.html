@@ -16,7 +16,7 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #1a1a2e;
             color: #ffffff;
-            overflow: hidden; /* Скрываем прокрутку страницы */
+            overflow: hidden;
         }
 
         .presentation-container {
@@ -33,10 +33,10 @@
             width: 100%;
             height: 100%;
             padding: 40px 80px;
-            display: none; /* Скрываем все слайды по умолчанию */
+            display: none;
             opacity: 0;
             transition: opacity 0.4s ease-in-out;
-            overflow-y: auto; /* Добавляем скролл, если текст не помещается */
+            overflow-y: auto;
         }
 
         .slide.active {
@@ -122,6 +122,84 @@
             padding: 5px;
         }
 
+        /* --- СТИЛИ ДЛЯ ТЕСТА --- */
+        .quiz-container {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px 30px;
+            border-radius: 15px;
+            border: 1px solid #333;
+        }
+
+        .question-block {
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .question-text {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #ff9f43;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .option-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            padding: 8px 12px;
+            border-radius: 8px;
+            transition: background 0.2s;
+        }
+
+        .option-label:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .option-label input[type="radio"] {
+            transform: scale(1.3);
+            cursor: pointer;
+        }
+
+        /* Подсветка правильных и неправильных ответов */
+        .correct-answer {
+            background-color: rgba(40, 167, 69, 0.4) !important;
+            border: 1px solid #28a745;
+        }
+
+        .wrong-answer {
+            background-color: rgba(220, 53, 69, 0.4) !important;
+            border: 1px solid #dc3545;
+        }
+
+        .quiz-btn {
+            background-color: #28a745;
+            font-size: 1.2rem;
+            padding: 12px 30px;
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        .quiz-btn:hover:not(:disabled) {
+            background-color: #218838;
+        }
+
+        #quiz-result {
+            margin-top: 15px;
+            font-size: 1.4rem;
+            font-weight: bold;
+            text-align: center;
+            display: none;
+        }
+
         /* Кнопки управления */
         .controls {
             position: absolute;
@@ -131,7 +209,7 @@
             display: flex;
             align-items: center;
             gap: 20px;
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.8);
             padding: 10px 20px;
             border-radius: 30px;
             z-index: 10;
@@ -154,6 +232,7 @@
 
         button:disabled {
             cursor: not-allowed;
+            opacity: 0.5;
         }
 
         #slideCounter {
@@ -163,7 +242,6 @@
             text-align: center;
         }
 
-        /* Кастомизация полосы прокрутки для слайдов */
         .slide::-webkit-scrollbar {
             width: 10px;
         }
@@ -284,10 +362,78 @@
             </div>
         </div>
 
+        <!-- Слайд 8: ТЕСТ -->
+        <div class="slide">
+            <div class="content">
+                <h1>Проверка знаний</h1>
+                <div class="quiz-container">
+                    
+                    <!-- Вопрос 1 -->
+                    <div class="question-block" data-question="1">
+                        <div class="question-text">1. Какой класс БПЛА согласно российской классификации имеет взлетную массу от 0 до 5 кг и дальность действия 25–40 км?</div>
+                        <div class="options">
+                            <label class="option-label"><input type="radio" name="q1" value="A"> А) Легкие БПЛА малого радиуса действия</label>
+                            <label class="option-label"><input type="radio" name="q1" value="B"> Б) Микро и мини БПЛА ближнего действия</label>
+                            <label class="option-label"><input type="radio" name="q1" value="C"> В) Средние БПЛА</label>
+                            <label class="option-label"><input type="radio" name="q1" value="D"> Г) Тяжелые БПЛА среднего радиуса действия</label>
+                        </div>
+                    </div>
+
+                    <!-- Вопрос 2 -->
+                    <div class="question-block" data-question="2">
+                        <div class="question-text">2. За счет чего создается подъемная сила у БПЛА самолетного типа (с жестким крылом)?</div>
+                        <div class="options">
+                            <label class="option-label"><input type="radio" name="q2" value="A"> А) За счет вращения несущих винтов, создающих вертикальную тягу</label>
+                            <label class="option-label"><input type="radio" name="q2" value="B"> Б) За счет аэростатической силы, заключенной в оболочке аппарата</label>
+                            <label class="option-label"><input type="radio" name="q2" value="C"> В) Аэродинамическим способом за счет напора воздуха, набегающего на неподвижное крыло</label>
+                            <label class="option-label"><input type="radio" name="q2" value="D"> Г) За счет реактивной тяги турбореактивных двигателей</label>
+                        </div>
+                    </div>
+
+                    <!-- Вопрос 3 -->
+                    <div class="question-block" data-question="3">
+                        <div class="question-text">3. Какое преимущество имеют гексакоптеры и октокоптеры по сравнению с квадрокоптерами?</div>
+                        <div class="options">
+                            <label class="option-label"><input type="radio" name="q3" value="A"> А) Они способны развивать более высокую максимальную скорость</label>
+                            <label class="option-label"><input type="radio" name="q3" value="B"> Б) Они обладают большей грузоподъемностью и способны сохранять устойчивый полет при выходе из строя одного двигателя</label>
+                            <label class="option-label"><input type="radio" name="q3" value="C"> В) Им не требуется взлетно-посадочная полоса</label>
+                            <label class="option-label"><input type="radio" name="q3" value="D"> Г) Они имеют меньшую стоимость обслуживания и вес</label>
+                        </div>
+                    </div>
+
+                    <!-- Вопрос 4 -->
+                    <div class="question-block" data-question="4">
+                        <div class="question-text">4. Как называют аппараты вертикального взлета и посадки, которые опираются хвостовой частью на грунт в стартовом положении?</div>
+                        <div class="options">
+                            <label class="option-label"><input type="radio" name="q4" value="A"> А) Автожиры</label>
+                            <label class="option-label"><input type="radio" name="q4" value="B"> Б) Конвертопланы</label>
+                            <label class="option-label"><input type="radio" name="q4" value="C"> В) Тэйлситтеры (tailsitter)</label>
+                            <label class="option-label"><input type="radio" name="q4" value="D"> Г) Гирокоптеры</label>
+                        </div>
+                    </div>
+
+                    <!-- Вопрос 5 -->
+                    <div class="question-block" data-question="5">
+                        <div class="question-text">5. Какая конструктивная особенность отличает автожир от обычного самолета?</div>
+                        <div class="options">
+                            <label class="option-label"><input type="radio" name="q5" value="A"> А) Наличие реактивного двигателя вместо поршневого</label>
+                            <label class="option-label"><input type="radio" name="q5" value="B"> Б) Полное отсутствие фюзеляжа</label>
+                            <label class="option-label"><input type="radio" name="q5" value="C"> В) Наличие свободно вращающегося винта, установленного в качестве крыла (или в дополнение к нему)</label>
+                            <label class="option-label"><input type="radio" name="q5" value="D"> Г) Способность взлетать строго вертикально без разбега</label>
+                        </div>
+                    </div>
+
+                    <button id="checkQuizBtn" class="quiz-btn">Проверить результаты</button>
+                    <div id="quiz-result"></div>
+
+                </div>
+            </div>
+        </div>
+
         <!-- Навигация -->
         <div class="controls">
             <button id="prevBtn">&#8592; Назад</button>
-            <span id="slideCounter">1 / 7</span>
+            <span id="slideCounter">1 / 8</span>
             <button id="nextBtn">Вперед &#8594;</button>
         </div>
 
@@ -296,33 +442,24 @@
     <!-- --- ВСТРОЕННЫЙ JAVASCRIPT --- -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // --- ЛОГИКА ПРЕЗЕНТАЦИИ ---
             const slides = document.querySelectorAll('.slide');
             const prevBtn = document.getElementById('prevBtn');
             const nextBtn = document.getElementById('nextBtn');
             const slideCounter = document.getElementById('slideCounter');
             let currentSlide = 0;
 
-            // Функция обновления отображения слайдов
             function showSlide(index) {
-                // Убираем активный класс у всех
                 slides.forEach(slide => slide.classList.remove('active'));
-                
-                // Добавляем активный класс нужному слайду
                 slides[index].classList.add('active');
-                
-                // Обновляем счетчик
                 slideCounter.textContent = `${index + 1} / ${slides.length}`;
                 
-                // Блокируем кнопки, если достигли края
                 prevBtn.disabled = index === 0;
                 nextBtn.disabled = index === slides.length - 1;
-                
-                // Делаем кнопки визуально неактивными
                 prevBtn.style.opacity = index === 0 ? '0.5' : '1';
                 nextBtn.style.opacity = index === slides.length - 1 ? '0.5' : '1';
             }
 
-            // Обработчики для кнопок
             nextBtn.addEventListener('click', () => {
                 if (currentSlide < slides.length - 1) {
                     currentSlide++;
@@ -337,7 +474,6 @@
                 }
             });
 
-            // Управление с клавиатуры (стрелки влево/вправо)
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'ArrowRight' && currentSlide < slides.length - 1) {
                     currentSlide++;
@@ -348,8 +484,86 @@
                 }
             });
 
-            // Инициализация первого слайда
             showSlide(currentSlide);
+
+            // --- ЛОГИКА ТЕСТА ---
+            const checkBtn = document.getElementById('checkQuizBtn');
+            const resultDiv = document.getElementById('quiz-result');
+            
+            // Правильные ответы (B, C, B, C, C)
+            const correctAnswers = {
+                q1: 'B',
+                q2: 'C',
+                q3: 'B',
+                q4: 'C',
+                q5: 'C'
+            };
+
+            checkBtn.addEventListener('click', () => {
+                let score = 0;
+                let allAnswered = true;
+
+                // Проверяем, что все вопросы отвечены
+                for (let i = 1; i <= 5; i++) {
+                    const selected = document.querySelector(`input[name="q${i}"]:checked`);
+                    if (!selected) {
+                        allAnswered = false;
+                        break;
+                    }
+                }
+
+                if (!allAnswered) {
+                    alert("Пожалуйста, ответьте на все вопросы перед проверкой!");
+                    return;
+                }
+
+                // Обрабатываем каждый вопрос
+                for (let i = 1; i <= 5; i++) {
+                    const questionBlock = document.querySelector(`.question-block[data-question="${i}"]`);
+                    const labels = questionBlock.querySelectorAll('.option-label');
+                    const selectedValue = document.querySelector(`input[name="q${i}"]:checked`).value;
+                    const correctValue = correctAnswers[`q${i}`];
+
+                    // Блокируем дальнейшее изменение ответов
+                    const inputs = questionBlock.querySelectorAll('input[type="radio"]');
+                    inputs.forEach(input => input.disabled = true);
+
+                    // Подсветка
+                    labels.forEach(label => {
+                        const input = label.querySelector('input');
+                        if (input.value === correctValue) {
+                            label.classList.add('correct-answer'); // Правильный ответ всегда зеленый
+                        }
+                        if (input.value === selectedValue && selectedValue !== correctValue) {
+                            label.classList.add('wrong-answer'); // Выбранный неправильный - красный
+                        }
+                    });
+
+                    if (selectedValue === correctValue) {
+                        score++;
+                    }
+                }
+
+                // Вывод результата
+                resultDiv.style.display = 'block';
+                let message = `Ваш результат: ${score} из 5. `;
+                if (score === 5) {
+                    message += "Отлично! Вы отлично усвоили материал.";
+                    resultDiv.style.color = "#28a745";
+                } else if (score >= 3) {
+                    message += "Хорошо! Но стоит повторить некоторые разделы.";
+                    resultDiv.style.color = "#ffc107";
+                } else {
+                    message += "Стоит пересмотреть презентацию еще раз.";
+                    resultDiv.style.color = "#dc3545";
+                }
+                resultDiv.textContent = message;
+                
+                // Меняем кнопку, чтобы нельзя было нажать дважды
+                checkBtn.textContent = "Результаты проверены";
+                checkBtn.disabled = true;
+                checkBtn.style.backgroundColor = "#6c757d";
+            });
         });
     </script>
 </body>
